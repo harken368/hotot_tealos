@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotot Tealos – Inicio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 520px; padding: 60px;
+      position: relative; overflow: hidden;
+      background: var(--dark2);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(0,229,209,.08) 0%, transparent 70%),
+                  radial-gradient(ellipse 30% 50% at 20% 80%, rgba(224,0,106,.06) 0%, transparent 70%);
+    }
+    .hero-text {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      color: var(--cyan); text-transform: uppercase; margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 6vw, 82px);
+      line-height: 1.0; letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .hero-title .accent { color: var(--cyan); display: block; }
+    .hero-desc { color: var(--muted); font-size: 14px; max-width: 380px; margin-bottom: 28px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+    .hero-stats { display: flex; gap: 32px; }
+    .hero-stat { display: flex; align-items: center; gap: 8px; }
+    .hero-stat-icon { color: var(--cyan); font-size: 16px; }
+    .hero-stat-text { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-shoe-box {
+      width: 100%; max-width: 400px; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1a1a28 0%, #0d0d18 100%);
+      border-radius: 16px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-shoe-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(0,229,209,.15) 0%, transparent 60%);
+    }
+    .hero-img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0; z-index: 0;
+      opacity: 0.85; border-radius: 16px;
+    }
+    .hero-img-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(135deg, rgba(10,10,20,0.45) 0%, rgba(0,229,209,0.06) 100%);
+      border-radius: 16px;
+    }
+    .hero-badge {
+      position: absolute; bottom: 16px; right: 16px; z-index: 2;
+      background: rgba(0,229,209,.15); border: 1px solid var(--cyan);
+      color: var(--cyan); font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; padding: 6px 12px; border-radius: 4px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-tag {
+      position: absolute; top: 16px; left: 16px; z-index: 2;
+      background: rgba(0,0,0,.7); color: var(--muted);
+      font-size: 10px; font-weight: 600; letter-spacing: 1px;
+      padding: 5px 10px; border-radius: 4px;
+    }
+
+    /* ══════════════════════════════
+       SERVICIOS (preview en home)
+    ══════════════════════════════ */
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 24px;
+      transition: border-color .25s, transform .25s;
+      cursor: pointer; position: relative;
+    }
+    .service-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+    .service-card.popular { border-color: var(--cyan); }
+    .popular-badge {
+      position: absolute; top: -11px; right: 20px;
+      background: var(--cyan); color: #000;
+      font-size: 9px; font-weight: 800; letter-spacing: 2px;
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .service-icon { font-size: 28px; margin-bottom: 14px; }
+    .service-name { font-family: var(--font-cond); font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .service-desc { color: var(--muted); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+    .service-features { list-style: none; margin-bottom: 20px; }
+    .service-features li { font-size: 12px; color: var(--muted); padding: 3px 0; display: flex; align-items: center; gap: 7px; }
+    .service-features li::before { content: '✓'; color: var(--cyan); font-weight: 700; font-size: 11px; }
+
+    /* ══════════════════════════════
+       GALERÍA (preview en home)
+    ══════════════════════════════ */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .gallery-item {
+      aspect-ratio: 4/3; background: var(--dark3);
+      border-radius: 10px; overflow: hidden; position: relative;
+      border: 1px solid var(--border); cursor: pointer;
+      transition: transform .2s;
+    }
+    .gallery-item:hover { transform: scale(1.02); }
+    .gallery-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1a1a28, #0d0d18);
+      position: relative;
+    }
+    .gallery-img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0;
+      transition: transform .35s ease; border-radius: 10px;
+    }
+    .gallery-item:hover .gallery-img { transform: scale(1.06); }
+    .gallery-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 14px 12px;
+      background: linear-gradient(transparent, rgba(0,0,0,.8));
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .gallery-tag {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(0,0,0,.7); color: var(--cyan);
+      font-size: 9px; font-weight: 700; letter-spacing: 1px;
+      padding: 3px 8px; border-radius: 20px;
+      border: 1px solid rgba(0,229,209,.3);
+    }
+    .gallery-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--cyan); font-size: 13px; font-weight: 600;
+      letter-spacing: 0.5px; text-decoration: none;
+      transition: gap .2s;
+    }
+    .gallery-link:hover { gap: 10px; }
+
+    /* ══════════════════════════════
+       NOSOTROS (snippet en home)
+    ══════════════════════════════ */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-box {
+      width: 100%; aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #1a1a28, #0d0d18);
+      border-radius: 16px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .about-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(224,0,106,.1) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 30%, rgba(0,229,209,.08) 0%, transparent 60%);
+    }
+    .about-img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0; border-radius: 16px; opacity: 0.75;
+    }
+    .about-counter {
+      position: absolute; bottom: 20px; left: 20px;
+      background: rgba(0,0,0,.8); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 18px; backdrop-filter: blur(8px);
+    }
+    .about-counter-num { font-family: var(--font-display); font-size: 36px; color: var(--cyan); line-height: 1; }
+    .about-counter-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-top: 2px; }
+    .about-visual { position: relative; }
+    .about-pct {
+      position: absolute; bottom: 20px; right: -20px;
+      background: var(--cyan); color: #000;
+      border-radius: 8px; padding: 10px 14px; text-align: center;
+    }
+    .about-pct-num { font-family: var(--font-display); font-size: 28px; line-height: 1; }
+    .about-pct-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+    .about-points { list-style: none; margin: 24px 0 32px; display: flex; flex-direction: column; gap: 16px; }
+    .about-point { display: flex; gap: 14px; align-items: flex-start; }
+    .about-point-icon { color: var(--cyan); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .about-point-title { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+    .about-point-text { color: var(--muted); font-size: 13px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero, .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 40px 24px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="index.html" class="nav-logo">HOTOT<span>TEALOS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="resultados.html">Resultados</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <a href="contacto.html" class="btn-wa">📱 Escríbenos por WhatsApp</a>
+</nav>
+
+<!-- ══════════ CONTENIDO: INICIO ══════════ -->
+<div class="page-content">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text anim-hero">
+      <p class="hero-eyebrow">Dale Nueva Vida</p>
+      <h1 class="hero-title">
+        A LO QUE<br>
+        <span class="accent">TE REPRESENTA</span>
+      </h1>
+      <p class="hero-desc">Limpieza profunda, restauración y reparación de sneakers, tenis y gorras con precisión de coleccionista.</p>
+      <div class="hero-btns">
+        <a href="contacto.html" class="btn-primary">📱 Escríbenos por WhatsApp</a>
+        <a href="servicios.html" class="btn-outline">Ver Servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-icon">✅</span>
+          <span class="hero-stat-text">Resultados<br>Visibles</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-icon">🎯</span>
+          <span class="hero-stat-text">Atención<br>Personalizada</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-icon">⚡</span>
+          <span class="hero-stat-text">Servicio<br>Especializado</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-icon">🚚</span>
+          <span class="hero-stat-text">Envío<br>Disponible</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual anim-hero-delay">
+      <div class="hero-shoe-box">
+        <img class="hero-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" alt="Sneaker restaurado" loading="eager">
+        <div class="hero-img-overlay"></div>
+        <span class="hero-badge">RESTAURACIÓN PREMIUM</span>
+        <span class="hero-tag">RESULTADO REAL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios preview -->
+  <section class="section section-alt">
+    <div class="section-head">
+      <div>
+        <p class="section-label">Servicios</p>
+        <h2 class="section-title">LO QUE HACEMOS POR TU ESTILO</h2>
+      </div>
+      <p class="section-subtitle">Servicios profesionales con atención al detalle para que tus piezas favoritas siempre luzcan como nuevas.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🧹</div>
+        <div class="service-name">LIMPIEZA PROFUNDA SNEAKERS</div>
+        <div class="service-desc">Lavado detallado exterior e interior para todo tipo de calzado.</div>
+        <ul class="service-features">
+          <li>Desmancha</li>
+          <li>Deodorización</li>
+          <li>Secado Especializado</li>
+        </ul>
+        <a href="servicios.html" class="btn-sm">Más información</a>
+      </div>
+      <div class="service-card popular">
+        <span class="popular-badge">MÁS POPULAR</span>
+        <div class="service-icon">✨</div>
+        <div class="service-name">RESTAURACIÓN PREMIUM</div>
+        <div class="service-desc">Restauración estética profesional con materiales de alta gama.</div>
+        <ul class="service-features">
+          <li>Pintura</li>
+          <li>Pátinas</li>
+          <li>Reparación</li>
+        </ul>
+        <a href="contacto.html" class="btn-sm filled">Solicitar</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧢</div>
+        <div class="service-name">LIMPIEZA DE GORRAS</div>
+        <div class="service-desc">Limpieza especializada para gorras, manteniendo su forma.</div>
+        <ul class="service-features">
+          <li>Lavado Delicado</li>
+          <li>Protección</li>
+          <li>Anti-deformación</li>
+        </ul>
+        <a href="servicios.html" class="btn-sm">Más información</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <div class="service-name">SERVICIO EXPRESS</div>
+        <div class="service-desc">Entrega rápida para quienes necesitan resultados inmediatos.</div>
+        <ul class="service-features">
+          <li>Servicio Prioritario</li>
+          <li>Menos Tiempo</li>
+          <li>Máxima Calidad</li>
+        </ul>
+        <a href="servicios.html" class="btn-sm">Más información</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería preview -->
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <p class="section-label">Antes / Después</p>
+        <h2 class="section-title">RESULTADOS QUE HABLAN POR NOSOTROS</h2>
+      </div>
+      <a href="resultados.html" class="gallery-link">Ver toda la galería →</a>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-inner">
+          <img class="gallery-img" src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=600&q=80" alt="Sneakers restaurados">
+          <div class="gallery-label">SNEAKERS</div>
+          <div class="gallery-tag">● ANTES/DESPUÉS</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-inner">
+          <img class="gallery-img" src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&q=80" alt="Gorras restauradas">
+          <div class="gallery-label">CAPS</div>
+          <div class="gallery-tag">● ANTES/DESPUÉS</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-inner">
+          <img class="gallery-img" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=80" alt="Calzado deportivo">
+          <div class="gallery-label">BOLSOS</div>
+          <div class="gallery-tag">● ANTES/DESPUÉS</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-inner">
+          <img class="gallery-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" alt="Colección de sneakers">
+          <div class="gallery-label">COLLECTION</div>
+          <div class="gallery-tag">● ANTES/DESPUÉS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros snippet -->
+  <section class="section section-alt">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-box">
+          <img class="about-img" src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700&q=80" alt="Técnico restaurando sneakers">
+          <div class="about-counter">
+            <div class="about-counter-num">+1K</div>
+            <div class="about-counter-label">CLIENTES FELICES</div>
+          </div>
+        </div>
+        <div class="about-pct">
+          <div class="about-pct-num">100%</div>
+          <div class="about-pct-label">GARANTÍA</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-label">Nosotros</p>
+        <h2 class="section-title">PASIÓN POR LO QUE HACEMOS</h2>
+        <p style="color:var(--muted);font-size:14px;margin-top:12px;">En Hotot Tealos cuidamos, restauramos y devolvemos la vida a tus sneakers, tenis y gorras. Más que un servicio, es un compromiso con tu estilo y la preservación de piezas icónicas.</p>
+        <ul class="about-points">
+          <li class="about-point">
+            <span class="about-point-icon">🛡️</span>
+            <div>
+              <div class="about-point-title">GARANTÍA DE CALIDAD</div>
+              <div class="about-point-text">Materiales premium y procesos probados para cada tipo de superficie.</div>
+            </div>
+          </li>
+          <li class="about-point">
+            <span class="about-point-icon">🎨</span>
+            <div>
+              <div class="about-point-title">TÉCNICOS ESPECIALIZADOS</div>
+              <div class="about-point-text">Tu equipo de entusiastas que entienden el valor de cada colección.</div>
+            </div>
+          </li>
+        </ul>
+        <a href="nosotros.html" class="btn-outline">Conoce más sobre nosotros</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2 class="cta-title">¿LISTO PARA RENOVAR <span class="accent">TU ESTILO?</span></h2>
+    <p class="cta-desc">Escríbenos hoy mismo y recibe una asesoría personalizada para la restauración de tus piezas favoritas.</p>
+    <div class="cta-btns">
+      <a href="contacto.html" class="btn-primary">📱 Escríbenos por WhatsApp</a>
+      <a href="resultados.html" class="btn-outline">Ver todos los resultados</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">HOTOT TEALOS</div>
+        <p class="footer-brand-desc">Precisión restoration para el street collector urbano. Tratamos cada pieza como una obra maestra.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#">𝕏</a>
+          <a class="social-btn" href="#">📷</a>
+          <a class="social-btn" href="#">🎵</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Inicio</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="resultados.html">Resultados</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <ul class="footer-links">
+          <li><a href="#">Términos de Servicio</a></li>
+          <li><a href="#">Domicilios</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Boletín</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Recibe consejos de restauración y acceso anticipado.</p>
+        <div class="footer-newsletter">
+          <input class="newsletter-input" type="email" placeholder="Tu correo electrónico">
+          <button class="newsletter-btn">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Hotot Tealos. Restauración de precisión para el coleccionista urbano.</span>
+    </div>
+  </footer>
+</div>
+
+<!-- WhatsApp FAB -->
+<a class="wa-fab" href="contacto.html" title="WhatsApp">💬</a>
+
+</body>
+</html>

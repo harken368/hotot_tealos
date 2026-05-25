@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotot Tealos – Servicios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ══════════════════════════════
+       HERO SERVICIOS
+    ══════════════════════════════ */
+    .services-hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding: 60px; background: var(--dark2);
+      position: relative; overflow: hidden;
+      min-height: 400px; align-items: center;
+    }
+    .services-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 80% 50%, rgba(0,229,209,.07) 0%, transparent 70%);
+    }
+    .services-hero-text { position: relative; z-index: 2; }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6vw, 76px);
+      line-height: 1.0; letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .hero-title .accent { color: var(--cyan); }
+    .hero-desc { color: var(--muted); font-size: 14px; max-width: 400px; margin-bottom: 24px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .services-hero-visual {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .before-after {
+      width: 100%; max-width: 400px; aspect-ratio: 4/3;
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border); position: relative;
+    }
+    .before-after-half {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 50px; position: relative;
+    }
+    .before-half { background: #0d0d18; }
+    .after-half  { background: #0a1a18; }
+    .before-after-label {
+      position: absolute; bottom: 10px;
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .before-half .before-after-label { background: rgba(255,255,255,.15); color: var(--muted); left: 10px; }
+    .after-half  .before-after-label { background: var(--cyan); color: #000; right: 10px; }
+    .before-after-divider {
+      position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 2px; background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    /* ══════════════════════════════
+       GRID DE SERVICIOS DETALLADO
+    ══════════════════════════════ */
+    .services-detail { padding: 80px 60px; }
+    .services-detail-head { margin-bottom: 50px; }
+    .services-big-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .service-big-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 32px;
+      position: relative; transition: border-color .2s;
+    }
+    .service-big-card:hover { border-color: rgba(0,229,209,.4); }
+    .service-big-card.highlight { border-color: var(--cyan); }
+    .service-big-card.span-full {
+      grid-column: span 2;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 30px; flex-wrap: wrap;
+    }
+    .service-big-icon { font-size: 36px; margin-bottom: 18px; }
+    .service-big-name { font-family: var(--font-cond); font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+    .service-big-desc { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+    .service-big-features {
+      list-style: none; margin-bottom: 24px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .service-big-features li { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .service-big-features li::before { content: '◈'; color: var(--cyan); font-size: 10px; }
+
+    /* ══════════════════════════════
+       PROCESO
+    ══════════════════════════════ */
+    .process-section { padding: 80px 60px; background: var(--dark2); }
+    .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 48px; }
+    .process-steps { display: flex; flex-direction: column; gap: 28px; }
+    .process-step { display: flex; gap: 20px; align-items: flex-start; }
+    .process-num {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: var(--dark4); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 20px;
+      color: var(--cyan);
+    }
+    .process-step-title { font-weight: 700; font-size: 15px; margin-bottom: 5px; }
+    .process-step-text { color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .process-visual { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
+    .process-visual-img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; opacity: 0.8; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .services-hero, .process-grid { grid-template-columns: 1fr; }
+      .services-hero { padding: 40px 24px; }
+      .services-detail { padding: 50px 24px; }
+      .process-section { padding: 50px 24px; }
+      .services-big-grid { grid-template-columns: 1fr; }
+      .service-big-card.span-full { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="index.html" class="nav-logo">HOTOT<span>TEALOS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="servicios.html" class="active">Servicios</a></li>
+    <li><a href="resultados.html">Resultados</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <a href="contacto.html" class="btn-wa">📱 Escríbenos por WhatsApp</a>
+</nav>
+
+<div class="page-content">
+
+  <!-- Hero -->
+  <section class="services-hero">
+    <div class="services-hero-text anim-hero">
+      <p class="section-label">Expert Restoration</p>
+      <h1 class="hero-title">ELEVA EL LEGADO<br>DE TU<br><span class="accent">STREETWEAR.</span></h1>
+      <p class="hero-desc">Servicios de restauración de precisión y limpieza profunda para quienes ven sus sneakers y gorras como inversiones. Técnicas modernas para el acabado definitivo.</p>
+      <div class="hero-btns" style="margin-top:24px;">
+        <a href="contacto.html" class="btn-primary">Ver Servicios</a>
+        <a href="contacto.html" class="btn-outline">Agendar Cita</a>
+      </div>
+    </div>
+    <div class="services-hero-visual anim-hero-delay">
+      <div class="before-after">
+        <div class="before-after-half before-half" style="overflow:hidden;position:relative;">
+          <img src="imagenes/5aa52c9b-4a59-4807-9c7c-3cf59e58a935.png" alt="Antes restauración" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:grayscale(60%) brightness(0.6);">
+          <span class="before-after-label">ANTES</span>
+        </div>
+        <div class="before-after-half after-half" style="overflow:hidden;position:relative;">
+          <img src="imagenes/5aa52c9b-4a59-4807-9c7c-3cf59e58a935 (1).png" alt="Después restauración" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:brightness(0.9);">
+          <span class="before-after-label">DESPUÉS</span>
+        </div>
+        <div class="before-after-divider"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios detallados -->
+  <section class="services-detail">
+    <div class="services-detail-head">
+      <p class="section-label">Services</p>
+      <h2 class="section-title">Cuidado a la medida de tus pertenencias</h2>
+      <p class="section-subtitle" style="margin-top:8px;">Desde esterilización profunda hasta restauración completa de color, utilizamos químicos y herramientas especializadas para cada material.</p>
+    </div>
+    <div class="services-big-grid">
+
+      <!-- Limpieza Sneakers -->
+      <div class="service-big-card highlight">
+        <span style="position:absolute;top:-11px;right:20px;background:var(--cyan);color:#000;font-size:9px;font-weight:800;letter-spacing:2px;padding:3px 10px;border-radius:20px;">MÁS POPULAR</span>
+        <div class="service-big-icon"></div>
+        <div class="service-big-name">Limpieza de Sneakers</div>
+        <div class="service-big-desc">Limpieza profunda interna y externa, incluyendo media suela y ojales. Eliminamos la oxidación y restauramos la textura original de piel, gamuza y nubuk.</div>
+        <ul class="service-big-features">
+          <li>Eliminación de manchas</li>
+          <li>Desodorización</li>
+          <li>Revitalización de gamuza</li>
+          <li>Impermeabilización</li>
+        </ul>
+        <a href="contacto.html" class="btn-primary">Solicitar Servicio</a>
+      </div>
+
+      <!-- Limpieza Gorras -->
+      <div class="service-big-card">
+        <div class="service-big-icon"></div>
+        <div class="service-big-name">Limpieza de Gorras</div>
+        <div class="service-big-desc">Cuidado especializado de visera y corona para preservar la integridad estructural y la vivacidad del color.</div>
+        <ul class="service-big-features">
+          <li>Lavado delicado</li>
+          <li>Protección UV</li>
+          <li>Anti-deformación</li>
+        </ul>
+        <a href="contacto.html" class="btn-sm" style="margin-top:8px;">Solicitar Servicio</a>
+      </div>
+
+      <!-- Restauración Premium -->
+      <div class="service-big-card">
+        <div class="service-big-icon"></div>
+        <div class="service-big-name">Restauración Premium</div>
+        <div class="service-big-desc">Repintado total y acondicionamiento de piel para piezas valiosas. Calidad de acabado de fábrica.</div>
+        <ul class="service-big-features">
+          <li>Pintura especializada</li>
+          <li>Pátinas artísticas</li>
+          <li>Reparación de costuras</li>
+        </ul>
+        <a href="contacto.html" class="btn-sm" style="margin-top:8px;">Solicitar Servicio</a>
+      </div>
+
+      <!-- Reparación de Suelas -->
+      <div class="service-big-card">
+        <div class="service-big-icon"></div>
+        <div class="service-big-name">Reparación de Suelas</div>
+        <div class="service-big-desc">Pegado, reparación de separaciones y cambio de suelas para devolver la funcionalidad a la colección.</div>
+        <ul class="service-big-features">
+          <li>Re-pegado profesional</li>
+          <li>Cambio de suela</li>
+          <li>Restauración de borde</li>
+        </ul>
+        <a href="contacto.html" class="btn-sm" style="margin-top:8px;">Solicitar Servicio</a>
+      </div>
+
+      <!-- Servicio Express (ancho completo) -->
+      <div class="service-big-card span-full">
+        <div>
+          <div class="service-big-icon"></div>
+          <div class="service-big-name">Servicio Express</div>
+          <div class="service-big-desc" style="max-width:500px;">Entrega en 24 horas para coleccionistas que necesitan resultados antes del gran evento. Sin compromiso en la calidad.</div>
+          <ul class="service-big-features" style="flex-direction:row;flex-wrap:wrap;gap:16px;">
+            <li>Prioridad máxima</li>
+            <li>Entrega a domicilio</li>
+            <li>Seguimiento en tiempo real</li>
+          </ul>
+        </div>
+        <a href="contacto.html" class="btn-primary">Solicitar Servicio</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="process-section">
+    <p class="section-label">Nuestro Proceso</p>
+    <h2 class="section-title">Nuestra Transformación Precisa</h2>
+    <div class="process-grid">
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="process-num">1</div>
+          <div>
+            <div class="process-step-title">Inspección</div>
+            <div class="process-step-text">Limpieza meticulosa utilizando tecnología ultrasónica y cepillos artesanales para identificar cada punto de atención.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">2</div>
+          <div>
+            <div class="process-step-title">Tratamiento</div>
+            <div class="process-step-text">Aplicación de productos especializados según el material: cuero, gamuza, mesh o sintético, con técnicas adaptadas.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">3</div>
+          <div>
+            <div class="process-step-title">Restauración</div>
+            <div class="process-step-text">Proceso de restauración estética completa devolviendo el color y la textura original de la pieza.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">4</div>
+          <div>
+            <div class="process-step-title">Entrega</div>
+            <div class="process-step-text">Inspección final y entrega cuidadosa con empaque protector. Garantía de satisfacción incluida.</div>
+          </div>
+        </div>
+      </div>
+      <div class="process-visual">
+        <img class="process-visual-img" src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=700&q=80" alt="Proceso de restauración de sneakers">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,10,20,0.8));border-radius:16px;"></div>
+        <p style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:13px;text-align:center;white-space:nowrap;">Proceso meticuloso y documentado</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner" style="margin-top:0;">
+    <h2 class="cta-title">¿LISTO PARA <span class="accent">REVIVIR</span> TU ESTILO?</h2>
+    <p class="cta-desc">Únete a los coleccionistas que confían en nosotros sus piezas más valiosas. Entrega rápida, resultados premium y servicio a domicilio.</p>
+    <div class="cta-btns">
+      <a href="contacto.html" class="btn-primary">Hablar con un Experto</a>
+      <a href="resultados.html" class="btn-outline">Ver Resultados</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">HOTOT TEALOS</div>
+        <p class="footer-brand-desc">Recibe consejos de restauración y acceso anticipado.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#">𝕏</a>
+          <a class="social-btn" href="#">📷</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Explorar</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="resultados.html">Antes y Después</a></li>
+          <li><a href="#">Domicilios</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <ul class="footer-links">
+          <li><a href="#">Términos de Servicio</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Boletín</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Recibe consejos de restauración y ofertas exclusivas.</p>
+        <div class="footer-newsletter">
+          <input class="newsletter-input" type="email" placeholder="Correo electrónico">
+          <button class="newsletter-btn">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Hotot Tealos. Restauración de precisión para el coleccionista urbano.</span>
+    </div>
+  </footer>
+</div>
+
+<a class="wa-fab" href="contacto.html" title="WhatsApp">💬</a>
+
+</body>
+</html>

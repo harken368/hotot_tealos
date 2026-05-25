@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotot Tealos – Resultados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ══════════════════════════════
+       HERO RESULTADOS
+    ══════════════════════════════ */
+    .results-hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding: 80px 60px 60px; background: var(--dark2);
+      position: relative; overflow: hidden;
+      align-items: center; gap: 40px;
+    }
+    .results-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 70% 50%, rgba(0,229,209,.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 30% 50% at 10% 80%, rgba(224,0,106,.06) 0%, transparent 70%);
+    }
+    .results-hero > div { position: relative; z-index: 2; }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 1.0; margin-bottom: 16px;
+    }
+    .hero-title .accent { color: var(--cyan); }
+    .hero-desc { color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 420px; }
+
+    /* ══════════════════════════════
+       FILTROS
+    ══════════════════════════════ */
+    .filters {
+      display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .filter-btn {
+      background: var(--dark3); border: 1px solid var(--border);
+      color: var(--muted); font-size: 12px; font-weight: 600;
+      letter-spacing: 1px; padding: 8px 18px; border-radius: 20px;
+      cursor: pointer; transition: all .2s;
+    }
+    .filter-btn:hover { border-color: rgba(0,229,209,.4); color: var(--text); }
+    .filter-btn.active { background: var(--cyan); border-color: var(--cyan); color: #000; }
+    .filter-right { margin-left: auto; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 1px; }
+
+    /* ══════════════════════════════
+       GRID DE RESULTADOS
+    ══════════════════════════════ */
+    .results-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .result-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .result-card:hover { border-color: rgba(0,229,209,.4); transform: translateY(-3px); }
+    .result-card-image { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+    .result-ba-grid { display: grid; grid-template-columns: 1fr 1fr; height: 100%; }
+    .result-ba-half { position: relative; overflow: hidden; }
+    .result-ba-img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0;
+    }
+    .result-ba-label {
+      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+      font-size: 9px; font-weight: 800; letter-spacing: 2px;
+      padding: 3px 10px; border-radius: 4px;
+      background: rgba(0,0,0,.7); color: var(--muted);
+    }
+    .result-ba-half:last-child .result-ba-label { background: var(--cyan); color: #000; }
+    .result-divider {
+      position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 2px; background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan); z-index: 2;
+    }
+    .result-tag {
+      position: absolute; top: 10px; right: 10px; z-index: 3;
+      background: rgba(0,0,0,.75); color: var(--cyan);
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      padding: 4px 10px; border-radius: 20px;
+      border: 1px solid rgba(0,229,209,.4);
+    }
+    .result-info { padding: 18px 20px; }
+    .result-title { font-family: var(--font-cond); font-size: 17px; font-weight: 700; margin-bottom: 5px; }
+    .result-sub { color: var(--muted); font-size: 12px; font-weight: 500; letter-spacing: 0.5px; }
+
+    /* Load more */
+    .load-more { text-align: center; padding: 40px 0 0; }
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); font-size: 13px; font-weight: 600;
+      padding: 12px 28px; border-radius: 8px; cursor: pointer;
+      letter-spacing: 0.5px; transition: all .2s;
+    }
+    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .results-hero { grid-template-columns: 1fr; padding: 50px 24px; }
+      .results-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="index.html" class="nav-logo">HOTOT<span>TEALOS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="resultados.html" class="active">Resultados</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <a href="contacto.html" class="btn-wa">📱 Escríbenos por WhatsApp</a>
+</nav>
+
+<div class="page-content">
+
+  <!-- Hero -->
+  <section class="results-hero">
+    <div class="anim-hero">
+      <p class="section-label">Galería de Proyectos</p>
+      <h1 class="hero-title">EL ARTE DE LA<br><span class="accent">RESTAURACIÓN</span></h1>
+      <p class="hero-desc">No dejes que tus favoritos acumulen polvo. Obtén una cotización profesional hoy y dale a tu colección el cuidado de precisión que merece.</p>
+    </div>
+    <div class="anim-hero-delay" style="display:flex;align-items:center;justify-content:center;">
+      <div style="width:100%;max-width:360px;aspect-ratio:4/3;border-radius:16px;border:1px solid var(--border);overflow:hidden;position:relative;">
+        <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=720&q=80" alt="Restauración de sneakers" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,20,0.3),transparent);"></div>
+        <span style="position:absolute;top:16px;right:16px;background:var(--magenta);color:#fff;font-size:11px;font-weight:800;letter-spacing:1px;padding:6px 12px;border-radius:6px;">PASIÓN POR<br>EL DETALLE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería filtrada -->
+  <section class="section">
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterResults(this,'todos')">Todos</button>
+      <button class="filter-btn" onclick="filterResults(this,'tenis')">Tenis</button>
+      <button class="filter-btn" onclick="filterResults(this,'gorras')">Gorras</button>
+      <button class="filter-btn" onclick="filterResults(this,'cascos')">Cascos</button>
+      <span class="filter-right">▼ Filtrar Resultados</span>
+    </div>
+
+    <div class="results-grid" id="results-grid">
+
+      <!-- Card 1: Tenis -->
+      <div class="result-card" data-cat="tenis">
+        <div class="result-card-image">
+          <div class="result-ba-grid">
+            <div class="result-ba-half" style="overflow:hidden;position:relative;">
+              <img class="result-ba-img" src="imagenes/ed89a162-5e9d-4f35-b76e-4e4389263a56.jpg" alt="Antes" style="filter:grayscale(70%) brightness(0.6);">
+              <span class="result-ba-label">ANTES</span>
+            </div>
+            <div class="result-ba-half" style="overflow:hidden;position:relative;">
+              <img class="result-ba-img" src="imagenes/974e8f64-bf1b-491a-881b-89c0c5fd591b.jpg" alt="Después">
+              <span class="result-ba-label">DESPUÉS</span>
+            </div>
+          </div>
+          <div class="result-divider"></div>
+          <div class="result-tag">Tenis</div>
+        </div>
+        <div class="result-info">
+          <div class="result-title">Limpieza Profunda y Restauración</div>
+          <div class="result-sub">Jordan 1 Retro High · OG Colorway</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Gorras -->
+      <div class="result-card" data-cat="gorras">
+        <div class="result-card-image">
+          <div class="result-ba-grid">
+            <div class="result-ba-half" style="overflow:hidden;position:relative;">
+              <img class="result-ba-img" src="imagenes/6e71b752-9760-4ecd-9042-c7e8a4b8dd23.jpg" alt="Antes" style="filter:grayscale(70%) brightness(0.55);">
+              <span class="result-ba-label">ANTES</span>
+            </div>
+            <div class="result-ba-half" style="overflow:hidden;position:relative;">
+              <img class="result-ba-img" src="imagenes/6e71b752-9760-4ecd-9042-c7e8a4b8dd23 (1).jpg" alt="Después">
+              <span class="result-ba-label">DESPUÉS</span>
+            </div>
+          </div>
+          <div class="result-divider"></div>
+          <div class="result-tag">Gorras</div>
+        </div>
+        <div class="result-info">
+          <div class="result-title">Renovación de Forma y Color</div>
+          <div class="result-sub">New Era 59FIFTY Custom</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Cascos -->
+      <div class="result-card" data-cat="cascos">
+        <div class="result-card-image">
+          <div class="result-ba-grid">
+            <div class="result-ba-half" style="overflow:hidden;position:relative;">
+              <img class="result-ba-img" src="imagenes/869307b0-1dff-49ad-999c-46a00ba9119f1.png" alt="Antes" style="filter:grayscale(70%) brightness(0.5);">
+              <span class="result-ba-label">ANTES</span>
+            </div>
+            <div class="result-ba-half" style="overflow:hidden;position:relative;">
+              <img class="result-ba-img" src="imagenes/869307b0-1dff-49ad-999c-46a00ba9119f.png" alt="Después">
+              <span class="result-ba-label">DESPUÉS</span>
+            </div>
+          </div>
+          <div class="result-divider"></div>
+          <div class="result-tag">Cascos</div>
+        </div>
+        <div class="result-info">
+          <div class="result-title">Pulida de Carcasa y Personalización</div>
+          <div class="result-sub">ADV-KG · Matte Renovation</div>
+        </div>
+      </div>
+
+      <!-- Card 4: Tenis -->
+      <div class="result-card" data-cat="tenis">
+        <div class="result-card-image">
+          <div class="result-ba-grid">
+            <div class="result-ba-half" style="overflow:hidden;position:relative;">
+              <img class="result-ba-img" src="imagenes/watermarked_img_10822514842776376469.jpg" alt="Antes" style="filter:grayscale(70%) brightness(0.55);">
+              <span class="result-ba-label">ANTES</span>
+            </div>
+            <div class="result-ba-half" style="overflow:hidden;position:relative;">
+              <img class="result-ba-img" src="imagenes/1ca17e9f-cab1-4e4b-8503-767ec7c89d1d.jpg" alt="Después">
+              <span class="result-ba-label">DESPUÉS</span>
+            </div>
+          </div>
+          <div class="result-divider"></div>
+          <div class="result-tag">Tenis</div>
+        </div>
+        <div class="result-info">
+          <div class="result-title">Blanqueamiento y Cuidado de Cuero</div>
+          <div class="result-sub">Air Force 1 · Triple White</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="load-more">
+      <p style="color:var(--muted);font-size:14px;margin-bottom:20px;">Ver para creer. Nuestros resultados hablan por sí solos.</p>
+      <button class="btn-ghost">Cargar más resultados ▼</button>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner" style="margin-top:0;">
+    <h2 class="cta-title">¿LISTO PARA <span class="accent">RENOVAR</span> TU ESTILO?</h2>
+    <p class="cta-desc">No dejes que tus favoritos acumulen polvo. Obtén una cotización profesional hoy y dale a tu colección el cuidado de precisión que merece.</p>
+    <div class="cta-btns">
+      <a href="contacto.html" class="btn-primary">Cotizar por WhatsApp</a>
+      <a href="servicios.html" class="btn-outline">Ver Todos los Servicios</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">HOTOT TEALOS</div>
+        <p class="footer-brand-desc">Precisión restoration para el street collector urbano.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#">𝕏</a>
+          <a class="social-btn" href="#">📷</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Explorar</div>
+        <ul class="footer-links">
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="#">Domicilios</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Soporte</div>
+        <ul class="footer-links">
+          <li><a href="#">Términos de Servicio</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Mantente al Día</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Suscríbete para recibir consejos y ofertas exclusivas.</p>
+        <div class="footer-newsletter">
+          <input class="newsletter-input" type="email" placeholder="Correo electrónico">
+          <button class="newsletter-btn">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Hotot Tealos. Restauración de precisión para el coleccionista urbano.</span>
+    </div>
+  </footer>
+</div>
+
+<a class="wa-fab" href="contacto.html" title="WhatsApp">💬</a>
+
+<script>
+  function filterResults(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.result-card').forEach(card => {
+      card.style.display = (cat === 'todos' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+  document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>

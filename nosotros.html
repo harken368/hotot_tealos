@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotot Tealos – Nosotros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ══════════════════════════════
+       ABOUT LAYOUT
+    ══════════════════════════════ */
+    .about-hero { padding: 100px 60px 60px; background: var(--dark2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-visual { position: relative; }
+    .about-box {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, #1a1a28, #0d0d18);
+      border-radius: 16px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .about-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(224,0,106,.1) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 30%, rgba(0,229,209,.08) 0%, transparent 60%);
+    }
+    .about-img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0; border-radius: 16px; opacity: 0.75;
+    }
+    .about-counter {
+      position: absolute; bottom: 20px; left: 20px;
+      background: rgba(0,0,0,.8); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 18px; backdrop-filter: blur(8px);
+    }
+    .about-counter-num { font-family: var(--font-display); font-size: 36px; color: var(--cyan); line-height: 1; }
+    .about-counter-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-top: 2px; }
+    .about-pct {
+      position: absolute; bottom: 20px; right: -20px;
+      background: var(--cyan); color: #000;
+      border-radius: 8px; padding: 10px 14px; text-align: center;
+    }
+    .about-pct-num { font-family: var(--font-display); font-size: 28px; line-height: 1; }
+    .about-pct-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+
+    .about-points { list-style: none; margin: 24px 0 32px; display: flex; flex-direction: column; gap: 16px; }
+    .about-point { display: flex; gap: 14px; align-items: flex-start; }
+    .about-point-icon { color: var(--cyan); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .about-point-title { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+    .about-point-text { color: var(--muted); font-size: 13px; }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 1px; line-height: 1.05; margin-bottom: 12px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .about-hero { padding: 80px 24px 50px; }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="index.html" class="nav-logo">HOTOT<span>TEALOS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="resultados.html">Resultados</a></li>
+    <li><a href="nosotros.html" class="active">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <a href="contacto.html" class="btn-wa">📱 Escríbenos por WhatsApp</a>
+</nav>
+
+<div class="page-content">
+
+  <!-- Sobre nosotros -->
+  <section class="about-hero">
+    <div class="about-grid">
+      <div class="about-visual anim-hero">
+        <div class="about-box">
+          <img class="about-img" src="imagenes/ad566372-73ae-4e97-b9a1-a4af73293d64.jpg" alt="Técnico de restauración trabajando en sneakers">
+          <div class="about-counter">
+            <div class="about-counter-num">+1K</div>
+            <div class="about-counter-label">CLIENTES FELICES</div>
+          </div>
+        </div>
+        <div class="about-pct">
+          <div class="about-pct-num">100%</div>
+          <div class="about-pct-label">SATISFACCIÓN</div>
+        </div>
+      </div>
+      <div class="anim-hero-delay">
+        <p class="section-label">Nosotros</p>
+        <h2 class="hero-title">PASIÓN POR LO QUE HACEMOS</h2>
+        <p style="color:var(--muted);font-size:14px;margin-top:14px;line-height:1.8;">En Hotot Tealos cuidamos, restauramos y devolvemos la vida a tus sneakers, tenis y gorras. Más que un servicio, es un compromiso con tu estilo y la preservación de piezas icónicas.</p>
+        <ul class="about-points">
+          <li class="about-point">
+            <span class="about-point-icon">🛡️</span>
+            <div>
+              <div class="about-point-title">GARANTÍA DE CALIDAD</div>
+              <div class="about-point-text">Materiales premium y procesos probados para cada tipo de superficie.</div>
+            </div>
+          </li>
+          <li class="about-point">
+            <span class="about-point-icon">🎨</span>
+            <div>
+              <div class="about-point-title">TÉCNICOS ESPECIALIZADOS</div>
+              <div class="about-point-text">Un equipo de entusiastas que entienden el valor de cada colección.</div>
+            </div>
+          </li>
+          <li class="about-point">
+            <span class="about-point-icon">🚀</span>
+            <div>
+              <div class="about-point-title">INNOVACIÓN CONSTANTE</div>
+              <div class="about-point-text">Siempre actualizando técnicas y productos para resultados superiores.</div>
+            </div>
+          </li>
+        </ul>
+        <a href="contacto.html" class="btn-primary">📱 Contáctanos ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2 class="cta-title">¿LISTO PARA RENOVAR <span class="accent">TU ESTILO?</span></h2>
+    <p class="cta-desc">Escríbenos hoy mismo y recibe una asesoría personalizada.</p>
+    <div class="cta-btns">
+      <a href="contacto.html" class="btn-primary">📱 Contáctanos ahora</a>
+      <a href="servicios.html" class="btn-outline">Ver Servicios</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">HOTOT TEALOS</div>
+        <p class="footer-brand-desc">Precisión restoration para el street collector urbano.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#">𝕏</a>
+          <a class="social-btn" href="#">📷</a>
+          <a class="social-btn" href="#">🎵</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Explorar</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="resultados.html">Resultados</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <ul class="footer-links">
+          <li><a href="#">📞 +57 005 005 4597</a></li>
+          <li><a href="#">✉ info@hotot-tealos.com</a></li>
+          <li><a href="#">📍 Bogotá, Colombia</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Boletín</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Recibe consejos y acceso anticipado.</p>
+        <div class="footer-newsletter">
+          <input class="newsletter-input" type="email" placeholder="Correo electrónico">
+          <button class="newsletter-btn">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Hotot Tealos. Restauración de precisión para el coleccionista urbano.</span>
+    </div>
+  </footer>
+</div>
+
+<a class="wa-fab" href="contacto.html" title="WhatsApp">💬</a>
+
+<script>
+  document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>

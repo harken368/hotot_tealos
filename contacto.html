@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotot Tealos – Contacto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ══════════════════════════════
+       HERO CONTACTO
+    ══════════════════════════════ */
+    .contact-hero {
+      background: var(--dark2); padding: 100px 60px 60px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .contact-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,229,209,.06) 0%, transparent 70%);
+    }
+    .contact-hero > * { position: relative; z-index: 1; }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 80px);
+      line-height: 1.0; margin-bottom: 14px; letter-spacing: 1px;
+    }
+    .hero-title .accent { color: var(--cyan); }
+
+    /* ══════════════════════════════
+       LAYOUT FORMULARIO + SIDEBAR
+    ══════════════════════════════ */
+    .contact-layout {
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 32px; padding: 60px 60px 80px; align-items: start;
+    }
+
+    /* Formulario */
+    .contact-form-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px;
+    }
+    .form-title { font-family: var(--font-cond); font-size: 22px; font-weight: 700; margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; }
+    .form-input, .form-select, .form-textarea {
+      background: var(--dark3); border: 1px solid rgba(255,255,255,.1);
+      color: var(--text); font-family: var(--font-body); font-size: 14px;
+      padding: 12px 16px; border-radius: 8px; outline: none;
+      transition: border-color .2s; width: 100%;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,.2); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--cyan); }
+    .form-select { appearance: none; cursor: pointer; }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .btn-submit {
+      width: 100%; background: var(--cyan); color: #000;
+      font-weight: 700; font-size: 14px; padding: 14px;
+      border-radius: 8px; border: none; cursor: pointer;
+      letter-spacing: 1px; text-transform: uppercase;
+      transition: opacity .2s; margin-top: 4px;
+    }
+    .btn-submit:hover { opacity: .85; }
+
+    /* Sidebar */
+    .contact-sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px;
+    }
+    .contact-card-title { font-family: var(--font-cond); font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+    .contact-card-btn {
+      width: 100%; background: var(--cyan); color: #000;
+      font-weight: 700; font-size: 13px; padding: 12px;
+      border-radius: 7px; border: none; cursor: pointer;
+      margin-bottom: 10px; display: flex; align-items: center;
+      justify-content: center; gap: 8px; transition: opacity .2s;
+    }
+    .contact-card-btn:hover { opacity: .85; }
+    .contact-card-btn.outline {
+      background: transparent; border: 1px solid rgba(0,229,209,.4);
+      color: var(--cyan);
+    }
+    .contact-card-btn.outline:hover { background: rgba(0,229,209,.08); }
+
+    /* Horarios */
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr td { padding: 7px 0; font-size: 13px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,.05); }
+    .hours-table tr td:last-child { text-align: right; color: var(--text); font-weight: 600; }
+    .hours-table tr:last-child td { border-bottom: none; }
+    .closed { color: var(--magenta) !important; }
+
+    /* Ubicación */
+    .location-box {
+      background: var(--dark3); border-radius: 10px; padding: 20px;
+      display: flex; align-items: center; gap: 14px; margin-top: 12px;
+    }
+    .location-icon { font-size: 28px; }
+    .location-city { font-weight: 700; font-size: 14px; }
+    .location-country { color: var(--muted); font-size: 12px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .contact-hero { padding: 80px 24px 50px; }
+      .contact-layout { grid-template-columns: 1fr; padding: 50px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="index.html" class="nav-logo">HOTOT<span>TEALOS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="resultados.html">Resultados</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html" class="active">Contacto</a></li>
+  </ul>
+  <a href="contacto.html" class="btn-wa">📱 Escríbenos por WhatsApp</a>
+</nav>
+
+<div class="page-content">
+
+  <!-- Hero -->
+  <section class="contact-hero anim-hero">
+    <p class="section-label">Ponte en Contacto</p>
+    <h1 class="hero-title">RESTAURAREMOS TU <span class="accent">LEGADO</span></h1>
+    <p style="color:var(--muted);font-size:15px;max-width:600px;margin:14px auto 0;">¿Listo para darle nueva vida a tu favorito? Nuestros artesanos están esperando para restaurar tus sneakers y gorras a su gloria original.</p>
+  </section>
+
+  <!-- Formulario + Sidebar -->
+  <section class="contact-layout">
+
+    <!-- Formulario -->
+    <div class="contact-form-box">
+      <div class="form-title">Enviar una Solicitud</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre Completo</label>
+          <input class="form-input" type="text" placeholder="Juan Pérez">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Teléfono</label>
+          <input class="form-input" type="tel" placeholder="+57 300 000 0000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo de Servicio</label>
+        <select class="form-select">
+          <option>Limpieza Profunda de Sneakers</option>
+          <option>Restauración Premium</option>
+          <option>Limpieza de Gorras</option>
+          <option>Reparación de Suelas</option>
+          <option>Servicio Express</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-textarea" placeholder="Cuéntanos sobre el estado de tu artículo..."></textarea>
+      </div>
+      <button class="btn-submit">Enviar Solicitud</button>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="contact-sidebar">
+      <div class="contact-card">
+        <div class="contact-card-title">📱 Soporte Rápido</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Obtén una cotización instantánea vía WhatsApp</p>
+        <button class="contact-card-btn">📱 Chatea con Nosotros Ahora</button>
+        <button class="contact-card-btn outline">📋 Agendar una Consulta</button>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card-title">🕐 Horarios del Taller</div>
+        <table class="hours-table">
+          <tr><td>Lun – Vie</td><td>9:00 – 19:00</td></tr>
+          <tr><td>Sábado</td><td>10:00 – 16:00</td></tr>
+          <tr><td>Domingo</td><td class="closed">Cerrado</td></tr>
+        </table>
+        <div class="location-box">
+          <span class="location-icon">📍</span>
+          <div>
+            <div class="location-city">Bogotá, Colombia</div>
+            <div class="location-country">Servicio a domicilio disponible</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">HOTOT TEALOS</div>
+        <p class="footer-brand-desc">Restauración de precisión para el coleccionista urbano. Tratamos cada pieza como una obra maestra.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#">𝕏</a>
+          <a class="social-btn" href="#">📷</a>
+          <a class="social-btn" href="#">🎵</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Explorar</div>
+        <ul class="footer-links">
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="resultados.html">Antes y Después</a></li>
+          <li><a href="#">Domicilios</a></li>
+          <li><a href="#">Sostenibilidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Soporte</div>
+        <ul class="footer-links">
+          <li><a href="#">Términos de Servicio</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Mantente al Día</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Suscríbete para recibir consejos de cuidado y ofertas exclusivas.</p>
+        <div class="footer-newsletter">
+          <input class="newsletter-input" type="email" placeholder="Correo electrónico">
+          <button class="newsletter-btn">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Hotot Tealos. Restauración de precisión para el coleccionista urbano.</span>
+    </div>
+  </footer>
+</div>
+
+<a class="wa-fab" href="contacto.html" title="WhatsApp">💬</a>
+
+<script>
+  document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>
